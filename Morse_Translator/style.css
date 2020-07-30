@@ -1,0 +1,118 @@
+body {
+    background-color: rgba(222, 222, 222, 1);
+
+}
+
+h1 {
+    margin-bottom: -15px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: -15px;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+.centralArea {
+    overflow: hidden;
+}
+
+.toggleLanguageArea {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    width: 230px;
+    height: 35px;
+}
+   
+.toggleLanguageArea input[type="radio"] {
+    display: none;
+}
+   
+.toggleLanguageArea label {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18pt;
+    font-weight: bold;
+    border: 2px solid #ccc;
+}
+   
+.toggleLanguageArea #toggleLanguageEN + label {
+    right: 50%;
+    background: #eee;
+    color: #666;
+    border-right: none;
+}
+   
+.toggleLanguageArea #toggleLanguageEN:checked +label {
+    color: #f00;
+}
+   
+.toggleLanguageArea #toggleLanguageJP + label {
+    left: 43%;
+    background: #eee;
+    color: #666;
+    border-left: none;
+}
+   
+.toggleLanguageArea #toggleLanguageJP:checked +label {
+    color: #f00;
+}
+
+.change {
+    text-align: center;
+}
+
+#inputTon {
+    width: 65px;
+    background: #eee;
+    text-align: center;
+    resize: none;
+}
+
+#inputTu {
+    width: 65px;
+    background: #eee;
+    text-align: center;
+    resize: none;
+}
+
+#inputSpace {
+    width: 65px;
+    background: #eee;
+    text-align: center;
+    resize: none;
+}
+
+#inputMorse {
+    width: 55%;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    resize: none;
+}
+
+#outputMorse {
+    width: 55%;
+    height: 120px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    resize: none;
+}
+
+.footer {
+    text-align: center;
+}

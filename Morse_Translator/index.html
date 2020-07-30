@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>モールス信号変換器</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="morseTranslator.js"></script>
+  </head>
+
+  <body>
+    <!--タイトル, 説明文の領域-->
+    <div class="title">
+      <h1>モールス信号変換器</h1>
+      <img src="line.png" class="line">
+    </div>
+    
+    <div class = "description">
+      <p>英語・日本語対応モールス信号変換器<br> 下の枠でトン, ツー, スペースの文字を置換することができる</p>
+    </div>
+    <!--タイトル, 説明文の領域-->
+
+    <!--設定の領域-->
+    <div class="toggleLanguageArea">
+      <input type="radio" name="toggleLanguageRadio" id="toggleLanguageEN" onclick="conversion()">
+        <label for="toggleLanguageEN">英語</label>
+      <input type="radio" name="toggleLanguageRadio" id="toggleLanguageJP" onclick="conversion()" checked="">
+        <label for="toggleLanguageJP">日本語</label>
+    </div>
+
+    <div class= "change" id= "change">
+        <textarea id="inputTon" name="inputTon" rows="1" cols="5" placeholder="とん" oninput="conversion()"></textarea>
+        <textarea id="inputTu" name="inputTu" rows="1" cols="5" placeholder="つー" oninput="conversion()"></textarea>
+        <textarea id="inputSpace" name="inputSpace" rows="1" cols="5" placeholder="隙間" oninput="conversion()"></textarea>
+    </div>
+    <!--設定の領域-->
+
+    <!--結果の領域-->
+    <div class="input" id="input">
+      <textarea id="inputMorse" name="inputMorse" rows="4" cols="40" placeholder="原文を入れてください" oninput="conversion()"></textarea>
+    </div>
+
+    <div class="output" id="output">
+      <textarea readonly id="outputMorse" name="outputMorse" placeholder="変換後のテキスト" rows="4" cols="40"></textarea>
+    </div>
+    <!--結果の領域-->
+
+    <!--締めの領域-->
+    <div class="footer">
+      <img src="line.png" class="line">
+      <p>参考文献：<br> 無線局運用規則第十二条 別表第一号 モールス符号</p>
+    </div>
+    <!--締めの領域-->
+  </body>
+
+</html>
