@@ -1,6 +1,5 @@
 body {
     background-color: rgba(222, 222, 222, 1);
-
 }
 
 h1 {
@@ -21,7 +20,7 @@ h1 {
     overflow: hidden;
 }
 
-.toggleLanguageArea {
+.toggle-language-area {
     position: relative;
     margin: auto;
     overflow: hidden;
@@ -29,11 +28,11 @@ h1 {
     height: 35px;
 }
    
-.toggleLanguageArea input[type="radio"] {
+.toggle-language-area input[type="radio"] {
     display: none;
 }
    
-.toggleLanguageArea label {
+.toggle-language-area label {
     display: block;
     position: absolute;
     top: 0;
@@ -47,25 +46,25 @@ h1 {
     border: 2px solid #ccc;
 }
    
-.toggleLanguageArea #toggleLanguageEN + label {
+.toggle-language-area #toggle-language-english + label {
     right: 50%;
     background: #eee;
     color: #666;
     border-right: none;
 }
    
-.toggleLanguageArea #toggleLanguageEN:checked +label {
+.toggle-language-area #toggle-language-english:checked +label {
     color: #f00;
 }
    
-.toggleLanguageArea #toggleLanguageJP + label {
+.toggle-language-area #toggle-language-japanese + label {
     left: 43%;
     background: #eee;
     color: #666;
     border-left: none;
 }
    
-.toggleLanguageArea #toggleLanguageJP:checked +label {
+.toggle-language-area #toggle-language-japanese:checked +label {
     color: #f00;
 }
 
@@ -73,28 +72,31 @@ h1 {
     text-align: center;
 }
 
-#inputTon {
+#input-ton {
     width: 65px;
+    height: auto;
     background: #eee;
     text-align: center;
     resize: none;
 }
 
-#inputTu {
+#input-tu {
     width: 65px;
+    height: auto;
     background: #eee;
     text-align: center;
     resize: none;
 }
 
-#inputSpace {
+#input-space {
     width: 65px;
+    height: auto;
     background: #eee;
     text-align: center;
     resize: none;
 }
 
-#inputMorse {
+#input-morse {
     width: 55%;
     height: 120px;
     display: block;
@@ -104,7 +106,7 @@ h1 {
     resize: none;
 }
 
-#outputMorse {
+#output-morse {
     width: 55%;
     height: 120px;
     display: block;

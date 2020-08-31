@@ -15,39 +15,40 @@
     </div>
     
     <div class = "description">
-      <p>英語・日本語対応モールス信号変換器<br> 下の枠でトン, ツー, スペースの文字を置換することができる</p>
+      <p>英語・日本語対応モールス信号変換器<br>下の枠でトン, ツー, スペースの文字を置換することができる<br>WebStorageを使用し、高セキュリティでの高速セーブを実現！</p>
     </div>
     <!--タイトル, 説明文の領域-->
 
     <!--設定の領域-->
-    <div class="toggleLanguageArea">
-      <input type="radio" name="toggleLanguageRadio" id="toggleLanguageEN" onclick="conversion()">
-        <label for="toggleLanguageEN">英語</label>
-      <input type="radio" name="toggleLanguageRadio" id="toggleLanguageJP" onclick="conversion()" checked="">
-        <label for="toggleLanguageJP">日本語</label>
+    <div class="toggle-language-area">
+      <input type="radio" name="toggle-language-radio" id="toggle-language-english" onclick="conversion()">
+        <label for="toggle-language-english">英語</label>
+      <input type="radio" name="toggle-language-radio" id="toggle-language-japanese" onclick="conversion()" checked="">
+        <label for="toggle-language-japanese">日本語</label>
     </div>
 
-    <div class= "change" id= "change">
-        <textarea id="inputTon" name="inputTon" rows="1" cols="5" placeholder="とん" oninput="conversion()"></textarea>
-        <textarea id="inputTu" name="inputTu" rows="1" cols="5" placeholder="つー" oninput="conversion()"></textarea>
-        <textarea id="inputSpace" name="inputSpace" rows="1" cols="5" placeholder="隙間" oninput="conversion()"></textarea>
+    <div class="change" id= "change">
+        <textarea id="input-ton" name="input-ton" rows="1" cols="5" placeholder="とん" oninput="conversion()"></textarea>
+        <textarea id="input-tu" name="input-tu" rows="1" cols="5" placeholder="つー" oninput="conversion()"></textarea>
+        <textarea id="input-space" name="input-space" rows="1" cols="5" placeholder="隙間" oninput="conversion()"></textarea>
     </div>
     <!--設定の領域-->
 
     <!--結果の領域-->
     <div class="input" id="input">
-      <textarea id="inputMorse" name="inputMorse" rows="4" cols="40" placeholder="原文を入れてください" oninput="conversion()"></textarea>
+      <textarea id="input-morse" name="input-morse" rows="4" cols="40" placeholder="原文を入れてください" oninput="conversion()"></textarea>
     </div>
 
     <div class="output" id="output">
-      <textarea readonly id="outputMorse" name="outputMorse" placeholder="変換後のテキスト" rows="4" cols="40"></textarea>
+      <textarea readonly id="output-morse" name="output-morse" placeholder="変換後のテキスト" rows="4" cols="40"></textarea>
     </div>
     <!--結果の領域-->
 
     <!--締めの領域-->
     <div class="footer">
       <img src="line.png" class="line">
-      <p>参考文献：<br> 無線局運用規則第十二条 別表第一号 モールス符号</p>
+      <p>参考文献：<br> <a href="https://elaws.e-gov.go.jp/search/html/325M50080000017_20200415_502M60000008038/pict/S25F30901000017_2007281807_001.pdf" target="_blank">e-Gov 無線局運用規則第十二条 別表第一号 モールス符号(総務省)</a>
+      </p>
     </div>
     <!--締めの領域-->
   </body>

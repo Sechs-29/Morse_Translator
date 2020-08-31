@@ -1,24 +1,25 @@
 //保存されたデータをロードし、変換します。
 window.onload = function () {
     var storage = localStorage;
-    document.getElementById("inputMorse").innerHTML = storage.getItem('savedInputMorse');
-    document.getElementById("inputTon").innerHTML = storage.getItem('savedTon');
-    document.getElementById("inputTu").innerHTML = storage.getItem('savedTu');
-    document.getElementById("inputSpace").innerHTML = storage.getItem('savedSpace');
+    document.getElementById("input-morse").innerText = storage.getItem('saved-input-morse');
+    document.getElementById("input-ton").innerText = storage.getItem('saved-ton');
+    document.getElementById("input-tu").innerText = storage.getItem('saved-tu');
+    document.getElementById("input-space").innerText = storage.getItem('saved-space');
+    document.getElementById("toggle-language-english").checked = !Boolean(parseInt(storage.getItem('saved-english-check'),10));
     conversion();
 }
 
-//ユーザーに入力されたデータをモールスに変換します。
+//ユーザーに入力されたデータをモールスに変換し、ID"output-morse"のinnerTextに入力するファンクションです。
 function conversion() {
 
     //とん、つー、スペースの置き換えを行います。もしユーザーによる入力がない場合は、 ||右のものが使われます。
-    let ton = document.getElementById("inputTon").value || "・",
-        tu = document.getElementById("inputTu").value || "ー",
-        space = document.getElementById("inputSpace").value || "  "
+    var ton = document.getElementById("input-ton").value || "・",
+        tu = document.getElementById("input-tu").value || "ー",
+        space = document.getElementById("input-space").value || "  "
 
     //*モールス信号では、日本語と英語の信号が被っているものがあります。よって、日本語と英語が使える変換器を自称するからには、辞書を２つ作らないといけません。
     //英語のモールス辞書です。ton, tu, spaceは上記のものに置き換えられます。
-    let englishDictionary = {
+    const englishDictionary = {
         "1": ton + tu + tu + tu + tu,
         "2": ton + ton + tu + tu + tu,
         "3": ton + ton + ton + tu + tu,
@@ -71,7 +72,7 @@ function conversion() {
     }
 
     //日本語のモールス辞書です。ton, tu, spaceは上記のものに置き換えられます。
-    let japaneseDictionary = {
+    const japaneseDictionary = {
         "1": ton + tu + tu + tu + tu,
         "2": ton + ton + tu + tu + tu,
         "3": ton + ton + ton + tu + tu,
@@ -138,51 +139,65 @@ function conversion() {
         "）": ton + tu + ton + ton + tu + ton
     }
 
-    //toggleLanguageENにチェックが入っているかどうかで、英語の辞書を使うか日本語の辞書を使うか判定します。
-    var dictionary = document.getElementById("toggleLanguageEN").checked ? englishDictionary : japaneseDictionary;
+    //toggle-language-english ラジオボタンにチェックが入っているかどうかで、英語の辞書を使うか日本語の辞書を使うか判定します。
+    var dictionary = document.getElementById("toggle-language-english").checked ? englishDictionary : japaneseDictionary;
 
     //このタブが閉じられ、そして再度開かれた時に保存されたデータをロードするために、データをセーブします。
     var storage = localStorage;
-    storage.setItem('savedTon', document.getElementById("inputTon").value);
-    storage.setItem('savedTu', document.getElementById("inputTu").value);
-    storage.setItem('savedSpace', document.getElementById("inputSpace").value);
-    storage.setItem('savedInputMorse', document.getElementById("inputMorse").value);
+    storage.setItem('saved-ton', document.getElementById("input-ton").value);
+    storage.setItem('saved-tu', document.getElementById("input-tu").value);
+    storage.setItem('saved-space', document.getElementById("input-space").value);
+    storage.setItem('saved-input-morse', document.getElementById("input-morse").value);
+    storage.setItem('saved-english-check', document.getElementById("toggle-language-english").checked ? 0 : 1);
 
     /*
-    もしも辞書が英語のものであった場合、inputMorseの中身を全て小文字化し、全ての文字を分割し配列に収めます。
-    もしも辞書が日本語のものであった場合、inputMorseの中身をtransJapanese(後述)し、全ての文字を分解し配列に収めます。
+    もしも辞書が英語のものであった場合、input-morseを全て小文字化し、全ての文字を分割し配列に収めます。
+    もしも辞書が日本語のものであった場合、input-morseをtransJapanese(後述)し、全ての文字を分解し配列に収めます。
     */
-    if (dictionary == englishDictionary) inputArray = new String(document.getElementById("inputMorse").value).toLowerCase().split('');
-    else inputArray = new String(transJapanese(document.getElementById("inputMorse").value)).split('');
+    if (dictionary == englishDictionary) inputArray = new String(document.getElementById("input-morse").value).toLowerCase().split('');
+    else inputArray = new String(transJapanese(document.getElementById("input-morse").value)).split('');
 
-    //分解された文字を1つ1つ確認し、辞書にあった場合は
+    /*
+    分解された文字を1つ1つ確認し、辞書にあった場合はモールスのパターンに置換し、outputArrayの末尾に挿入します。
+    もし辞書にない文字だった場合には、そのままoutputArrayの末尾に挿入します。
+    */
     var outputArray = new Array();
     for (let i = 0; i < inputArray.length; i++) {
         if (dictionary[inputArray[i]]) outputArray.push(dictionary[inputArray[i]]);
         else outputArray.push(inputArray[i]);
     }
 
-
-    document.getElementById("outputMorse").innerHTML = outputArray.join(space);
+    //outputArrayの全要素を順に連結した文字列をoutput-morseに表示させます。
+    document.getElementById("output-morse").innerText = outputArray.join(space);
 }
 
-function transJapanese(txt) {
-    var inputArray = new String(kanaToHira(txt)).split('');
+//ひらがな、カタカナを全てひらがなに変換し、モールス信号に存在しない濁点つきひらがなを"か゛"のように分解し値を返すファンクションです。
+function transJapanese(text) {
+
+    //txtをkanaToHira(後述)し、全ての文字を分割し配列に収めます。
+    var inputArray = new String(kanaToHira(text)).split('');
     var outputArray = new Array();
 
+    /*
+    String.prototype.normalize('NFD')をすることでUnicode文字列が正規化され、正準等価性により分解され、
+    「が」で例を出すと、配列[0]に「か」、配列[1]に「゛」という風に分解されます。
+    それを利用し、もし配列[1]に濁音、半濁音があった場合には削除し、独立した濁音、半濁音記号である「゛」「゜」を挿入するようにしています。
+    */
     for (let i = 0; i < inputArray.length; i++) {
         outputArray.push(inputArray[i].normalize('NFD')[0]);
         if (inputArray[i].normalize('NFD')[1]) {
-            if (inputArray[i].normalize('NFD')[1].charCodeAt(0) == 12441) outputArray.push('゛');
-            else if (inputArray[i].normalize('NFD')[1].charCodeAt(0) == 12442) outputArray.push('゜')
+            if (inputArray[i].normalize('NFD')[1].charCodeAt(0) == 0x3099) outputArray.push('゛');
+            else if (inputArray[i].normalize('NFD')[1].charCodeAt(0) == 0x309A) outputArray.push('゜');
         }
     }
     return outputArray.join('');
 }
 
-function kanaToHira(txt) {
-    return txt.replace(/[\u30a1-\u30f6]/g, function(match) {
-        var rplc = match.charCodeAt(0) - 0x60;
-        return String.fromCharCode(rplc);
-    });
+/*
+カタカナをひらがなに変換し、値を返すファンクションです。
+カタカナとひらがなのUTF-16コードユニットの値を比較すると、0x60だけずれており、結果カタカナ(u30A1-u30FA)のUTF-16コードポイントから0x60を引くことで
+カタカナをひらがなに変換することを行なっています。
+*/
+function kanaToHira(text) {
+    return text.replace(/[\u30A1-\u30FA]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
 }
