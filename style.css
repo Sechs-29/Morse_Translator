@@ -72,29 +72,14 @@ h1 {
     text-align: center;
 }
 
-#input-ton {
+.input-textarea {
     width: 65px;
-    height: auto;
+    height: 18px;
     background: #eee;
     text-align: center;
     resize: none;
 }
 
-#input-tu {
-    width: 65px;
-    height: auto;
-    background: #eee;
-    text-align: center;
-    resize: none;
-}
-
-#input-space {
-    width: 65px;
-    height: auto;
-    background: #eee;
-    text-align: center;
-    resize: none;
-}
 
 #input-morse {
     width: 55%;
