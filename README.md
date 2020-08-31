@@ -1,4 +1,4 @@
-# Morse_Translator
+# 安全モールス信号変換器
 日本語/英語をモールス信号に変換します Progedu 2020夏コンテスト提出用作品: https://progedu.github.io/webappcontest2020s/entry
   
 英語・日本語対応モールス信号変換器  
